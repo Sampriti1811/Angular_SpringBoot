@@ -16,7 +16,7 @@ import com.example.project.dto.EmployeeResponse;
 import com.example.project.model.Employee;
 import com.example.project.repository.EmpLoginActRepository;
 import com.example.project.repository.EmployeeRepository;
-import com.example.project.service.LoginService;
+import com.example.project.service.EmployeeService;
 
 @RestController
 public class EmployeeController {
@@ -43,7 +43,7 @@ public class EmployeeController {
 	}
 	
 	@Autowired 
-	private LoginService service;
+	private EmployeeService service;
 	  
 	@GetMapping("/") 
 	public String getWelcomeMsg() { 
@@ -55,30 +55,31 @@ public class EmployeeController {
 	
 	  public Employee registerUser(@RequestBody Employee user) throws Exception {
 	  
-	  String tempName = user.getName(); if(tempName != null && !"".equals(tempName)) {
+	  String tempName = user.getName(); 
+	  if(tempName != null && !"".equals(tempName)) {
 	  
 	  Employee userobj = service.fetchUserByName(tempName);
 	  
 	  if(userobj !=null) { throw new Exception("user with "+tempName+
-	  " is already exist"); } } Employee userObj = null; userObj =
-	  service.saveUser(user); return userObj; }
+	  " is already exist"); } } 
+	  Employee userObj = null; userObj = service.saveUser(user); return userObj; }
 	  
 	  @PostMapping("/login")
 	  
 	  @CrossOrigin(origins = "http://localhost:4200") 
-	  public Employee loginUser(@RequestBody Employee user) throws Exception { String tempName =
-	  user.getName(); String tempPass = user.getPassword();
+	  public Employee loginUser(@RequestBody Employee user) throws Exception { 
+		  String tempName = user.getName(); String tempPass = user.getPassword();
 	  
-	  Employee userObj = null;
-	  
-	  if(tempName != null && tempPass != null) { 
-		  userObj = service.fetchUserByNameAndPassword(tempName, tempPass); }
-	  
-	  if(userObj == null) { 
-		  throw new Exception("Bad credentials");
-		 } 
-	     return userObj; }
-	 
+		  Employee userObj = null;
+		  
+		  if(tempName != null && tempPass != null) { 
+			  userObj = service.fetchUserByNameAndPassword(tempName, tempPass); }
+		  
+		  if(userObj == null) { 
+			  throw new Exception("Bad credentials");
+			 } 
+		     return userObj; }
+		 
 	
 
 }

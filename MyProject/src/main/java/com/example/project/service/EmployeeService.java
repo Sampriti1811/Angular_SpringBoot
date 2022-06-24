@@ -8,7 +8,7 @@ import com.example.project.repository.EmployeeRepository;
 
 
 @Service
-public class LoginService {
+public class EmployeeService {
 	
 	@Autowired
 	private EmployeeRepository repo;

@@ -12,7 +12,7 @@ import com.example.project.model.Employee;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer>{
 	
-	@Query("SELECT e.name, emp.log_id, emp.accessTime, emp.activity FROM employee e INNER JOIN e.emplog ON e.id")
+	@Query("SELECT name FROM Employee e")
 	public List<EmployeeResponse> getJoinedInfo();
 	
 	public Employee findByName(String name);
@@ -22,3 +22,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer>{
 	
 
 }
+//, emp.log_id, emp.accessTime, emp.activity 
+// INNER JOIN e.emplog ON e.id
