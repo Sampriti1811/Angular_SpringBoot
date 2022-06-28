@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -25,37 +27,32 @@ import lombok.ToString;
 public class EmployeeLoginActivity {
 	
 	@Id
-	private int log_id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="logId")
+	private int logId;
 	
-	@Column(name = "access_time")
-	private Timestamp accessTime;
+	@Column(name="accessTime")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date accessTime = new Date(System.currentTimeMillis());
 	
 	@Column(name="activity")
 	private String activity;
 	
 	
 	
-	public EmployeeLoginActivity(int log_id, Timestamp accessTime, String activity) {
+	public EmployeeLoginActivity(int logId, String activity,int emp_id) {
 		super();
-		this.log_id = log_id;
-		this.accessTime = accessTime;
+		this.logId = logId;
 		this.activity = activity;
+		
 	}
 
-	public int getLog_id() {
-		return log_id;
+	public int getLogId() {
+		return logId;
 	}
 	
-	public void setLog_id(int log_id) {
-		this.log_id = log_id;
-	}
-	
-	public Timestamp getAccessTime() {
-		return accessTime;
-	}
-	
-	public void setAccessTime(Timestamp accessTime) {
-		this.accessTime = accessTime;
+	public void setLogId(int logId) {
+		this.logId = logId;
 	}
 	
 	public String getActivity() {

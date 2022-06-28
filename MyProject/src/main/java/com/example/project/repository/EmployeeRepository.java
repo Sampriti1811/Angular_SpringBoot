@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.project.dto.EmployeeResponse;
 import com.example.project.model.Employee;
+import com.example.project.model.EmployeeLoginActivity;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer>{
@@ -18,6 +19,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer>{
 	public Employee findByName(String name);
 	
 	public Employee findByNameAndPassword(String name, String password);
+
+
 
 	
 
