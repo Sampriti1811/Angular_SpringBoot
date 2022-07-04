@@ -18,53 +18,35 @@ import com.example.project.model.EmployeeEdit;
 import com.example.project.service.EmpEditService;
 
 @RestController
-@RequestMapping(value="/emp")
-@CrossOrigin(origins = "http://localhost:4200")
+//@RequestMapping(value="/emp")
+@CrossOrigin
 public class EmpEditController {
 	
 	@Autowired 
 	private EmpEditService services;
 	
-	//Add new employee
-	@PostMapping("/addEmployee")
-    public EmployeeEdit addEmployee(@RequestBody EmployeeEdit employee) {
+	//get employees
+	@GetMapping("/employees")
+	public List<EmployeeEdit> getEmployees() {
+        return services.getEmployees();
+    }
+	
+	//add a new employee
+	@PostMapping("/employees")
+	public EmployeeEdit addEmployee(@RequestBody EmployeeEdit employee) {
         return services.addEmployee(employee);
     }
 
-    // Add more than 1 employee
-    @PostMapping("/addEmployees")
-    public List<EmployeeEdit> addAllEmployees(@RequestBody List<EmployeeEdit> employees) {
-        return services.addAllEmployees(employees);
-    }
-    
- // Get employee by Id
-    @GetMapping("/getEmployeeByID/{id}")
-    public EmployeeEdit getEmployeeById(@PathVariable long id) {
-        return services.getEmployeeByID(id);
-    }
-
-    // Get employee by name
-    @GetMapping("/getEmployeeByName/{name}")
-    public  EmployeeEdit getEmployeeByName(@PathVariable String name) {
-        return  services.getEmployeeByName(name);
-    }
-
     // Update employee
-    @PutMapping("/updateEmployee")
-    public EmployeeEdit updateEmployee(@RequestBody EmployeeEdit employee) {
-        return services.updateEmployee(employee);
+    @PutMapping("/employees/{id}")
+    public void updateEmployee(@PathVariable("id") Integer id, @RequestBody EmployeeEdit employee) {
+        services.updateEmployee(employee);
     }
 
     // Delete employee
-    @DeleteMapping("/deleteEmployeeById/{id}")
-    public boolean deleteEmployeeByID(@PathVariable long id) {
-        return services.deleteEmployeeByID(id);
-    }
-
-    // Get all employee
-    @GetMapping("/getAll")
-    public List<EmployeeEdit> getAllEmployee() {
-        return services.getAllEmployees();
+    @DeleteMapping("/employees/{id}/delete")
+    public void deleteEmployee(@PathVariable("id") Integer id) {
+        services.deleteEmployee(id);
     }
 
 }

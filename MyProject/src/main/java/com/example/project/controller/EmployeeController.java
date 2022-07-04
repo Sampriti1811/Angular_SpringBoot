@@ -47,7 +47,7 @@ public class EmployeeController {
 	}
 		
 	  
-	@GetMapping("/welcome") 
+	@GetMapping("/") 
 	public String getWelcomeMsg() { 
 		return "Welcome to Employee Service"; 
 	}

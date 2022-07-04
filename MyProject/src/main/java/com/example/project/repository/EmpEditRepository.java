@@ -9,14 +9,14 @@ import com.example.project.model.EmployeeEdit;
 
 public interface EmpEditRepository extends JpaRepository<EmployeeEdit, Integer>{
 	
-	public EmployeeEdit getByName(String name);
+	//public EmployeeEdit getByName(String name);
 	
-	public EmployeeEdit findByName(String name);
+	//public EmployeeEdit findByName(String name);
 
-	public Optional<EmployeeEdit> findById(long id);
+	public Optional<EmployeeEdit> findById(Integer id);
 
-	public void deleteById(long id);
+	public void deleteById(Integer id);
 
-	public EmployeeEdit getById(long id);
+	public EmployeeEdit getById(Integer id);
 
 }
